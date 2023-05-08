@@ -64,6 +64,7 @@ class MainWindow(QMainWindow):
         path_cost = path_cost + graph[current_node][start]["weight"]
         return path, path_cost
 
+
     def start_algorithm(self):
         start_node = self.start_node_combo_box.currentText()
         self.path, self.path_cost = self.simulated_annealing(self.graph, start_node)
