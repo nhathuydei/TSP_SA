@@ -31,12 +31,11 @@ class MainWindow(QMainWindow):
         self.grid_layout.addWidget(self.start_button, 2, 0, 1, 2)
         # xác định danh sách các nodes và danh sách các đường đi (cạnh) cho graph
         self.nodes = ["A", "B", "C", "D", "E", "F"]
-        self.edges = [("A", "B", 6), ("A", "D", 4), ("A", "E", 3), ("A", "F", 5),
-                      ("B", "C", 5), ("B", "D", 4), ("B", "F", 4),
-                      ("C", "D", 3), ("C", "E", 5),
-                      ("D", "E", 3),
-                      ("E", "F", 3),
-                      ("F", "B", 4)]
+        self.edges = [("A", "B", 6), ("A", "D", 4), ("A", "E", 3), ("A", "F", 5), ("A", "C", 7),
+                      ("B", "C", 5), ("B", "D", 4), ("B", "F", 4),("B", "E", 3),
+                      ("C", "D", 3), ("C", "E", 5), ("C", "F", 4),
+                      ("D", "E", 3), ("D", "F", 4),
+                      ("E", "F", 3)]
         # tạo một object đồ thị vô hướng mới
         self.graph = nx.Graph()
         # thêm cạnh và chi phí vào đồ thị
@@ -74,7 +73,7 @@ class MainWindow(QMainWindow):
                 # kiểm tra nếu node tiếp theo là node kết thúc, thuật toán nối nó vào path và 
                 # thêm chi phí của cạnh (đường đi) từ node hiện tại đến node kết thúc, sau đó trả về final path 
                 # và tổng chi phí (path_cost). Nếu không thì tiếp tục
-                if next_node == start:
+                if next_node == start and path.len == 8:
                     path.append(next_node)
                     path_cost += graph[current_node][next_node]["weight"]
                     return path, path_cost
